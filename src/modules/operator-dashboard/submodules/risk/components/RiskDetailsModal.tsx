@@ -168,28 +168,34 @@ export default function RiskDetailsModal({
       </div>
 
       {/* Sticky action bar la baza modalului */}
-      <div className="sticky bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur border-t border-gray-200 dark:border-gray-700 p-4 flex items-center justify-end gap-3 z-20">
-        <Button onClick={() => onReject(application.id)} className="bg-red-600">
+      <div className="sticky bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur border-t border-gray-200 dark:border-gray-700 p-4 flex flex-wrap items-center justify-end gap-2 z-20">
+        <Button
+          onClick={() => onReject(application.id)}
+          className="bg-red-600 sm:w-auto w-full"
+        >
           Respinge
         </Button>
         <Button
           onClick={() => onManualReview(application.id)}
-          className="bg-yellow-500"
+          className="bg-yellow-500 sm:w-auto w-full"
         >
           Manual Review
         </Button>
-        <Button onClick={() => handleScrollToDocs()} className="bg-indigo-600">
+        <Button
+          onClick={() => handleScrollToDocs()}
+          className="bg-indigo-600 sm:w-auto w-full"
+        >
           Solicită Documente
         </Button>
         <Button
           onClick={() => onSendToAML(application.id)}
-          className="bg-purple-600"
+          className="bg-purple-600 sm:w-auto w-full "
         >
           Trimite la AML
         </Button>
         <Button
           onClick={() => onApprove(application.id)}
-          className="bg-green-600"
+          className="bg-green-600 sm:w-auto w-full"
         >
           Aprobă
         </Button>

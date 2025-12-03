@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 
 export interface Column<T> {
-  key: string;
+  key: keyof T;
   label: string;
   render?: (item: T) => ReactNode;
   className?: string;
@@ -43,7 +43,10 @@ export default function ApplicationTable<T>({
         }}
       >
         {columns.map((col) => (
-          <div key={col.key} className={col.headerClassName ?? col.className}>
+          <div
+            key={String(col.key)}
+            className={`${col.headerClassName ?? col.className ?? ""}`}
+          >
             {col.label}
           </div>
         ))}
@@ -70,16 +73,25 @@ export default function ApplicationTable<T>({
             gridTemplateColumns: `repeat(${columns.length}, minmax(0, 1fr))`,
           }}
         >
-          {columns.map((col) => (
-            <div
-              key={col.key}
-              className={`${col.className ?? ""} flex items-center`}
-            >
-              {col.render
-                ? col.render(item)
-                : ((item as any)[col.key] as ReactNode)}
-            </div>
-          ))}
+          {columns.map((col) => {
+            const value = item[col.key];
+
+            return (
+              <div
+                key={String(col.key)}
+                className={`${col.className ?? ""} flex items-center`}
+              >
+                {col.render
+                  ? col.render(item)
+                  : value !== undefined &&
+                    (typeof value === "string" ||
+                      typeof value === "number" ||
+                      typeof value === "boolean")
+                  ? String(value)
+                  : null}
+              </div>
+            );
+          })}
         </div>
       ))}
 

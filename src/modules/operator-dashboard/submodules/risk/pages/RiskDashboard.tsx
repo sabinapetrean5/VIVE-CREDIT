@@ -99,7 +99,7 @@ export default function RiskDashboard() {
           Medium: "text-yellow-700 bg-yellow-100",
           High: "text-red-700 bg-red-100",
         };
-        // transfor text status
+        // transform text status
         const formatStatus = (status: string) =>
           status
             .split("_")
