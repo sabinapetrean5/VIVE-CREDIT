@@ -1,3 +1,4 @@
+import KycStatusPage from "@/pages/loan/VerificationStatusPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 /* Public pages */
@@ -91,29 +92,6 @@ const AppRoutes = () => {
       {/* OPERATOR AUTH */}
       <Route path="/login/operator" element={<OperatorLoginPage />} />
 
-      {/* ADMIN AUTH */}
-
-      <Route path="/login/admin" element={<AdminLoginPage />} />
-
-      {/* ADMIN */}
-      <Route
-        path="/admin"
-        element={
-          <ProtectedAdminRoute>
-            <AdminHomePage />
-          </ProtectedAdminRoute>
-        }
-      />
-
-      <Route
-        path="/admin/users"
-        element={
-          <ProtectedAdminRoute>
-            <UsersPage />
-          </ProtectedAdminRoute>
-        }
-      />
-
       {/* CLIENT ONBOARDING */}
       <Route
         path="/onboarding"
@@ -202,6 +180,23 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute allowedRoles={["client"]}>
             <UploadDocumentPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/verification"
+        element={
+          <ProtectedRoute allowedRoles={["client"]}>
+            <KycStatusPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/verification-timeline"
+        element={
+          <ProtectedRoute allowedRoles={["client"]}>
+            <KycStatusPage />
           </ProtectedRoute>
         }
       />
