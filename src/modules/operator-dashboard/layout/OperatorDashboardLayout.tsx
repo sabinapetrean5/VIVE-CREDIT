@@ -23,7 +23,7 @@ const navItems = [
   { label: 'Sales', path: 'sales', icon: DollarSign },
   { label: 'Risk', path: 'risk', icon: ShieldCheck },
   { label: 'Collections', path: 'collections', icon: Users },
-  { label: 'Reports', path: 'reports', icon: FileText },
+  { label: 'Rapoarte', path: 'reports', icon: FileText },
 ];
 
 export default function OperatorDashboardLayout() {

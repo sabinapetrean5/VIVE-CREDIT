@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as Select from '@radix-ui/react-select';
 import * as Popover from '@radix-ui/react-popover';
 import { DayPicker } from 'react-day-picker';
+import './ReportsCalendar.css';
 import {
   BarChart,
   Bar,
@@ -102,28 +103,28 @@ export default function ReportsPage() {
       : 'Selectează perioada';
 
   return (
-    <div className='w-full flex justify-center'>
-      <div className='w-full max-w-4xl bg-white rounded-xl p-8 shadow-sm border'>
-        <h1 className='text-2xl font-semibold mb-6 text-center text-blue-500'>
+    <div className='w-full flex justify-center dark:bg-gray-900'>
+      <div className='w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm border border-gray-200 dark:border-gray-700'>
+        <h1 className='text-2xl font-semibold mb-6 text-center text-gray-700 dark:text-gray-200'>
           Rapoarte
         </h1>
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
           <div>
-            <label className='block text-sm font-medium mb-2 text-gray-700'>
+            <label className='block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200'>
               Tip raport
             </label>
 
             <Select.Root
               value={reportType}
               onValueChange={(v) => setReportType(v as ReportType)}>
-              <Select.Trigger className='w-full flex items-center justify-between px-3 py-2 border rounded-md'>
+              <Select.Trigger className='w-full flex h-10 items-center justify-between px-3 py-2 border rounded-md bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200'>
                 <Select.Value />
                 <ChevronDown size={16} />
               </Select.Trigger>
 
               <Select.Portal>
-                <Select.Content className='bg-white border rounded-md shadow-md'>
+                <Select.Content className='bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md shadow-md'>
                   <Select.Viewport className='p-1'>
                     {[
                       { v: 'applications', l: 'Aplicații' },
@@ -133,7 +134,7 @@ export default function ReportsPage() {
                       <Select.Item
                         key={item.v}
                         value={item.v}
-                        className='flex items-center px-2 py-2 rounded hover:bg-gray-100 cursor-pointer'>
+                        className='flex items-center px-2 py-2 rounded cursor-pointer text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600'>
                         <Select.ItemIndicator className='mr-2'>
                           <Check size={14} />
                         </Select.ItemIndicator>
@@ -147,13 +148,13 @@ export default function ReportsPage() {
           </div>
 
           <div>
-            <label className='block text-sm font-medium mb-2 text-gray-700'>
+            <label className='block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200'>
               Perioadă
             </label>
 
             <Popover.Root open={openCalendar} onOpenChange={setOpenCalendar}>
               <Popover.Trigger asChild>
-                <button className='w-full px-3 py-2 border rounded-md flex items-center justify-between'>
+                <button className='w-full px-3 h-10 py-2 border rounded-md flex items-center justify-between bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200'>
                   <span className='text-sm'>{rangeLabel}</span>
                   <CalendarIcon size={16} />
                 </button>
@@ -162,7 +163,7 @@ export default function ReportsPage() {
               <Popover.Portal>
                 <Popover.Content
                   sideOffset={8}
-                  className='bg-white border rounded-md shadow-md p-3'>
+                  className='bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md shadow-md p-3 text-gray-700 dark:text-gray-200 '>
                   <DayPicker
                     mode='range'
                     selected={{ from: range.from, to: range.to }}
@@ -171,13 +172,13 @@ export default function ReportsPage() {
 
                   <div className='flex justify-between mt-3'>
                     <button
-                      className='px-3 py-2 text-sm border rounded-md'
+                      className='px-3 py-2 text-sm border rounded-md border-gray-200 dark:border-gray-600 dark:text-gray-200'
                       onClick={() => setRange({})}>
                       Reset
                     </button>
 
                     <button
-                      className='px-3 py-2 text-sm bg-blue-600 text-white rounded-md'
+                      className='px-3 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700'
                       onClick={() => setOpenCalendar(false)}>
                       OK
                     </button>
@@ -190,7 +191,7 @@ export default function ReportsPage() {
           <div className='flex items-end'>
             <button
               onClick={handleGenerate}
-              className='w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700'>
+              className='w-full px-4 py-2 h-10 bg-blue-600 text-white rounded-md hover:bg-blue-700'>
               Generează raport
             </button>
           </div>
@@ -199,7 +200,7 @@ export default function ReportsPage() {
             <button
               type='button'
               onClick={handleExport}
-              className='px-4 py-2 rounded-md border bg-white text-gray-700 hover:bg-gray-50'>
+              className='px-4 py-2 rounded-md border bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'>
               Export CSV
             </button>
           </div>
@@ -207,7 +208,7 @@ export default function ReportsPage() {
 
         {chartData.length > 0 && (
           <div className='mt-8'>
-            <h2 className='text-lg font-semibold mb-4 text-center text-gray-700'>
+            <h2 className='text-lg font-semibold mb-4 text-center text-gray-700 dark:text-gray-200'>
               Grafic
             </h2>
 
